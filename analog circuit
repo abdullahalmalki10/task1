@@ -1,0 +1,30 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal mylcd(7,8,9,10,11,12);
+volatile int a;
+volatile int b;
+
+void setup(){
+  mylcd.begin(16,2);
+  mylcd.setCursor(1-1, 1-1);
+  mylcd.print("hello");
+  delay(1000);
+  mylcd.clear();
+  a = 0;
+  b = 0;
+}
+
+void loop(){
+  a = analogRead(A1)*0.488;
+  b = analogRead(A0);
+
+  mylcd.setCursor(1-1, 1-1);
+  mylcd.print("TMP=");
+  mylcd.setCursor(5-1, 1-1);
+  mylcd.print(a);
+  mylcd.setCursor(1-1, 2-1);
+  mylcd.print("ANALOG-A0=");
+  mylcd.setCursor(11-1, 2-1);
+  mylcd.print(b);
+
+}
